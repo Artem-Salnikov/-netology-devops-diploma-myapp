@@ -1,1 +1,1 @@
-# -netology-devops-diploma-myapp
+# netology-devops-diploma-myapp
