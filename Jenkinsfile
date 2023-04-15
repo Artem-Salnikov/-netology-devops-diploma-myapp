@@ -7,7 +7,7 @@ pipeline {
     	agent any
       steps {
 	sh 'NOW=$(date +"%Y-%m-%d_%H-%M")'      
-      	sh 'docker build -t "$NOW" .'
+      	sh 'docker build -t $BUILD_NUMBER .'
       }
     }
   }
