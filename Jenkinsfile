@@ -6,7 +6,8 @@ pipeline {
     stage('Docker Build') {
     	agent any
       steps {
-      	sh 'docker build -t "$(date +'%Y-%m-%d_%H-%M')" .'
+	sh 'now=$(date +'%Y-%m-%d_%H-%M')'      
+      	sh 'docker build -t "$now" .'
       }
     }
   }
