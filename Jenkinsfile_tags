@@ -19,7 +19,7 @@ pipeline {
     	agent any
       steps {
       	sh """
-        docker build -t artemsalnikov/myapp-nginx:$last_tag .
+        docker build -t artemsalnikov/myapp-nginx:0.0.3 .
         """
       }
     }
