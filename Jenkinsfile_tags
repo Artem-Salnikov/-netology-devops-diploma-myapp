@@ -10,7 +10,7 @@ pipeline {
       steps {
         script {
           def last_tag = sh(returnStdout: true, script: 'git tag --list --sort=-version:refname \"0*\" | head -n 1')
-          echo "last_tag: ${last_tag}"
+          echo "last_tag=$last_tag"
       	//sh "last_tag=\$(git tag --list --sort=-version:refname \"0*\" | head -n 1)"
       }
     }
@@ -19,7 +19,7 @@ pipeline {
     	agent any
       steps {
       	sh """
-        docker build -t artemsalnikov/myapp-nginx:0.0.3 .
+        docker build -t artemsalnikov/myapp-nginx:$last_tag .
         """
       }
     }
