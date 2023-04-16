@@ -9,7 +9,7 @@ pipeline {
     stage('Get last tag') {
       steps {
         script {
-          def last_tag = sh(returnStdout: true, script: 'git tag --list --sort=-version:refname \"0*\" | head -n 1')
+          last_tag = sh(returnStdout: true, script: 'git tag --list --sort=-version:refname \"0*\" | head -n 1')
           }
           echo "last_tag=$last_tag"
       	//sh "last_tag=\$(git tag --list --sort=-version:refname \"0*\" | head -n 1)"
@@ -34,4 +34,3 @@ pipeline {
     }
   }
 }
- 
