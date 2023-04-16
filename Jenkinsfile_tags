@@ -17,8 +17,10 @@ pipeline {
     }
     stage('Docker Build') {
       steps {
+         dir ('.') {
       	sh "docker build -t artemsalnikov/myapp-nginx:$last_tag ."
       }
+    }
     }
    stage('Dockerhub login') {
       steps {
