@@ -10,15 +10,26 @@ pipeline {
       steps {
         script {
           def output = sh(returnStdout: true, script: 'git tag --list --sort=-version:refname \"0*\" | head -n 1')
-          echo "Output: ${output}"
+          echo "last_tag: ${last_tag}"
       	//sh "last_tag=\$(git tag --list --sort=-version:refname \"0*\" | head -n 1)"
       }
     }
     }
-    stage('Dockerhub login') {
+    stage('Docker Build') {
+    	agent any
       steps {
-        sh "echo \$output"
-  }
+      	sh 'docker build -t "artemsalnikov/myapp-nginx:$last_tag" .'
+      }
+    }
+   stage('Dockerhub login') {
+      steps {
+        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+      }
+    }
+    stage('Docker push') {
+      steps {
+        sh 'docker push artemsalnikov/myapp-nginx:$last_tag'
+      }
     }
   }
 }
