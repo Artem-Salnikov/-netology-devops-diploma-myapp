@@ -7,7 +7,6 @@ pipeline {
   }
   stages {
     stage('Get last tag') {
-    	agent any
       steps {
         script {
           def output = sh(returnStdout: true, script: 'git tag --list --sort=-version:refname \"0*\" | head -n 1')
