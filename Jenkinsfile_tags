@@ -15,11 +15,12 @@ pipeline {
       	//sh "last_tag=\$(git tag --list --sort=-version:refname \"0*\" | head -n 1)"
       }
     }
+    }
+  }
     stage('Dockerhub login') {
       steps {
         sh "echo \$output"
   }
     }
   }
- }
-}
+ 
