@@ -9,7 +9,7 @@ pipeline {
     stage('Get last tag') {
     	agent any
       steps {
-      	sh "last_tag=${(git tag --list --sort=-version:refname \"0*\" | head -n 1)}"
+      	sh "last_tag=\$(git tag --list --sort=-version:refname \"0*\" | head -n 1)"
       }
     }
     stage('Dockerhub login') {
