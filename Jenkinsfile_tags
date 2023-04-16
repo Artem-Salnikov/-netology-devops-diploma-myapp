@@ -15,11 +15,11 @@ pipeline {
       }
     }
     }
-  }
     stage('Dockerhub login') {
       steps {
         sh "echo \$output"
   }
     }
   }
+}
  
