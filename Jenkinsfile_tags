@@ -29,7 +29,7 @@ pipeline {
     }
     stage('Docker push') {
       steps {
-        sh 'docker push artemsalnikov/myapp-nginx:$last_tag'
+        sh "docker push artemsalnikov/myapp-nginx:$last_tag"
       }
     }
   }
