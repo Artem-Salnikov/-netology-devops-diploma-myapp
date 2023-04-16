@@ -6,11 +6,16 @@ pipeline {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
   }
   stages {
-    stage('Docker Build') {
+    stage('Get last tag') {
     	agent any
       steps {
-      	sh 'git tag'
+      	sh 'last_tag=$(git tag --list --sort=-version:refname "0*" | head -n 1)'
       }
+    }
+    stage('Dockerhub login') {
+      steps {
+        sh 'echo $last_tag'
+  }
     }
   }
  }
