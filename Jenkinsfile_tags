@@ -1,0 +1,16 @@
+#!groovy
+
+pipeline {
+	agent any
+  environment {
+    DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+  }
+  stages {
+    stage('Docker Build') {
+    	agent any
+      steps {
+      	sh 'git tag'
+      }
+    }
+  }
+ }
