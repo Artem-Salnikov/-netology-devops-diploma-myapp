@@ -14,7 +14,7 @@ pipeline {
     }
     stage('Dockerhub login') {
       steps {
-        sh "echo $last_tag"
+        sh "echo \$last_tag"
   }
     }
   }
