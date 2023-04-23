@@ -33,7 +33,7 @@ pipeline {
     }
      stage('deploy app via helm') {
       steps {
-        sh "helm install netology ./helm/myapp --set myapp_deployment.image.tag=$last_tag -n myapp"
+        sh "helm upgrade netology ./helm/myapp --set myapp_deployment.image.tag=$last_tag -n myapp"
       }
     }   
   }
