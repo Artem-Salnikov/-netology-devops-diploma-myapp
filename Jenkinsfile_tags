@@ -12,7 +12,6 @@ pipeline {
           last_tag = sh(returnStdout: true, script: 'git tag --list --sort=-version:refname \"0*\" | head -n 1').trim()
           }
           echo "last_tag=$last_tag"
-      	//sh "last_tag=\$(git tag --list --sort=-version:refname \"0*\" | head -n 1)"
     }
     }
     stage('Docker Build') {
@@ -32,5 +31,10 @@ pipeline {
         sh "docker push artemsalnikov/myapp-nginx:$last_tag"
       }
     }
+     stage('deploy app via helm') {
+      steps {
+        sh "helm install netology ./helm/myapp --set myapp_deployment.image.tag=$last_tag -n myapp"
+      }
+    }   
   }
 }
